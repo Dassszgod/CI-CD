@@ -21,6 +21,12 @@ def read_product_data(file_path):
                 continue 
     return products
 
+def filter_last_month(products):
+    today = datetime.date.today()
+    last_month = today - datetime.timedelta(days=30)
+    return [p for p in products if p[1] >= last_month]
+
 if __name__ == "__main__":
     data = read_product_data("data.txt")
-    print("Прочитані дані:", data)
+    last_month_data = filter_last_month(data)
+    print("Прочитані дані:", last_month_data)
